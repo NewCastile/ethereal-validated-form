@@ -41,3 +41,4 @@ This useReducer + useContext combo is really cool so i encourage you to give it 
 - Creating a single context for the whole app.
 - Adding a little turn-back animmation for the card to show a link to [ethereal](https://ethereal.email/).
 - Adding and gif to the README.md file.
+- Copy-paste test user in one click
