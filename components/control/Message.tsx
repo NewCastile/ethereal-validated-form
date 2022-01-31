@@ -11,7 +11,11 @@ export default function Message() {
 	const { formDispatcher } = useFormContext()
 	const { notificationDispatcher } = useNotificationContext()
 	return (
-		<Stack direction={"column"} justifyContent={"center"} alignItems={"center"}>
+		<Stack
+			width={"100%"}
+			direction={"column"}
+			justifyContent={"center"}
+			alignItems={"center"}>
 			<Text>
 				Great! thanks for your time, now your into something else i dont know :p
 			</Text>

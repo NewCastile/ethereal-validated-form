@@ -17,7 +17,7 @@ export default function Second() {
 	const countryRef = useRef<HTMLSelectElement>(null)
 	const cityRef = useRef<HTMLSelectElement>(null)
 	return (
-		<Stack direction={"column"} alignItems={"center"} justifyContent={"center"}>
+		<>
 			<NotificationBox />
 			<Select
 				ref={countryRef}
@@ -53,6 +53,7 @@ export default function Second() {
 				spacing={"20px"}
 				divider={<StackDivider />}>
 				<Button
+					flexBasis={"25%"}
 					onClick={() => {
 						completionDispatcher({ type: "RESET" })
 						notificationDispatcher({ type: "RESET" })
@@ -61,7 +62,7 @@ export default function Second() {
 					Go back
 				</Button>
 				<Button
-					type='button'
+					flexBasis={"25%"}
 					onClick={() => {
 						if (countryRef.current && cityRef.current) {
 							try {
@@ -88,6 +89,6 @@ export default function Second() {
 					Next
 				</Button>
 			</Stack>
-		</Stack>
+		</>
 	)
 }

@@ -37,8 +37,8 @@ This useReducer + useContext combo is really cool so i encourage you to give it 
 
 ## Things i might missed
 
-- Responsiveness (forgive me).
+- Responsiveness. ✅
 - Creating a single context for the whole app.
-- Adding a little turn-back animmation for the card to show a link to [ethereal](https://ethereal.email/).
+- Adding a little turn-around animation for the form card to show a link to [ethereal](https://ethereal.email/).
 - Adding and gif to the README.md file.
-- Copy-paste test user in one click
+- Button to paste example user into form in one click. ✅

@@ -10,7 +10,7 @@ export default function NotificationBox() {
 	return (
 		<>
 			{success ? (
-				<Box color={"teal"} width={"60ch"}>
+				<Box color={"teal"} width={"100%"}>
 					<Text fontWeight={"bold"}>{notification.split("http")[0]}</Text>
 					{links.length >= 1 ? (
 						<Stack>
@@ -23,7 +23,7 @@ export default function NotificationBox() {
 					) : null}
 				</Box>
 			) : success === false ? (
-				<Box color={"tomato"} width={"60ch"}>
+				<Box color={"tomato"} width={"100%"}>
 					<Text fontWeight={"bold"}>{notification.split("http")[0]}</Text>
 					{links.length >= 1 ? (
 						<Stack>

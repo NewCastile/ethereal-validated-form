@@ -16,11 +16,7 @@ export default function Second() {
 	const codeRef = useRef<HTMLInputElement>(null)
 
 	return (
-		<Stack
-			direction={"column"}
-			alignItems={"center"}
-			justifyContent={"center"}
-			spacing={"30px"}>
+		<>
 			<NotificationBox />
 			<Input ref={codeRef} type={"text"}></Input>
 			<Stack
@@ -30,7 +26,7 @@ export default function Second() {
 				spacing={"20px"}
 				divider={<StackDivider />}>
 				<Button
-					flexBasis={"100%"}
+					flexBasis={"25%"}
 					onClick={() => {
 						completionDispatcher({ type: "INVALIDATE_CODE" })
 						codeDispatcher({ type: "RESET" })
@@ -39,7 +35,7 @@ export default function Second() {
 					Go back
 				</Button>
 				<Button
-					flexBasis={"100%"}
+					flexBasis={"25%"}
 					onClick={() => {
 						if (codeRef.current) {
 							if (codeRef.current.value === codeState.code) {
@@ -68,6 +64,6 @@ export default function Second() {
 					Next
 				</Button>
 			</Stack>
-		</Stack>
+		</>
 	)
 }

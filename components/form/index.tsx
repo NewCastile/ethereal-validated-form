@@ -31,27 +31,28 @@ export default function Form() {
 		.filter((option) => option.state === "NOT VALIDATED")
 		?.map((option) => option.component)[0]
 	return (
-		<Stack
-			boxShadow={"1px 1px 20px rgba(0,0,0,40%)"}
-			borderRadius={"10px"}
-			bgColor={"white"}
-			padding={"2em"}
-			direction={"column"}
-			justifyContent={"center"}
-			alignItems={"center"}
-			spacing={"30px"}>
+		<Stack {...ContainerStyles}>
 			<Text fontWeight={"bold"} fontSize={"1.5em"}>
 				Ethereal Validated Form
 			</Text>
-			{SelectedForm ? SelectedForm : <Message />}
-			<Stack
-				direction={"column"}
-				className='spacer'
-				width={"100%"}
-				height={"4em"}
-				justifyContent={"flex-end"}>
-				<Steps />
+			<Stack width={"100%"} spacing={"20px"}>
+				{SelectedForm ? SelectedForm : <Message />}
 			</Stack>
+			<Steps />
 		</Stack>
 	)
+}
+
+const ContainerStyles = {
+	boxShadow: "1px 1px 20px rgba(0,0,0,40%)" as any,
+	borderRadius: "10px" as any,
+	bgColor: "white" as any,
+	padding: "2em" as any,
+	direction: "column" as any,
+	justifyContent: "center" as any,
+	alignItems: "center" as any,
+	spacing: "30px" as any,
+	width: "100%" as any,
+	margin: "1em" as any,
+	maxWidth: "450px" as any,
 }

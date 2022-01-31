@@ -7,10 +7,11 @@ export default function Steps() {
 	const { completionState } = useCompletionContext()
 	return (
 		<Stack
+			width={"100%"}
 			direction={"row"}
 			justifyContent={"center"}
 			alignItems={"center"}
-			spacing={"30px"}
+			spacing={"1.5em"}
 			divider={
 				<Box border={"none"} fontWeight={"bold"} color={"gray.400"}>
 					{">"}

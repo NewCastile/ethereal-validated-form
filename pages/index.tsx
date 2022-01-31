@@ -18,12 +18,17 @@ import {
 	CodeProvider,
 } from "../hooks/useCode"
 import Form from "../components/form"
-import { Center, ChakraProvider } from "@chakra-ui/react"
+import { Stack, ChakraProvider } from "@chakra-ui/react"
 
 const Home: NextPage = () => {
 	return (
-		<Center height={"100%"}>
-			<ChakraProvider>
+		<ChakraProvider>
+			<Stack
+				direction={"column"}
+				justifyContent={"center"}
+				alignItems={"center"}
+				width={"100%"}
+				height={"100%"}>
 				<CompletionProvider init={initialCompletionState}>
 					<FormProvider init={initialFormState}>
 						<CodeProvider init={initialCodeState}>
@@ -33,8 +38,8 @@ const Home: NextPage = () => {
 						</CodeProvider>
 					</FormProvider>
 				</CompletionProvider>
-			</ChakraProvider>
-		</Center>
+			</Stack>
+		</ChakraProvider>
 	)
 }
 
