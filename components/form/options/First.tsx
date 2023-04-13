@@ -33,43 +33,18 @@ export default function First() {
 				justifyContent={"center"}
 				spacing={"20px"}>
 				<Text>
-					Please register using{" "}
+					1. Please register using{" "}
 					<Link
 						color={"#5da4ee"}
 						textDecoration={"underline"}
 						isExternal
-						to={"https://ethereal.email/"}>
+						href={"https://ethereal.email"}>
 						Ethereal
 					</Link>
 				</Text>
-
-				<Stack
-					direction={"column"}
-					alignItems={"flex-start"}
-					justifyContent={"center"}
-					width={"100%"}
-					spacing={"20px"}>
-					<Stack
-						width={"100%"}
-						direction={"row"}
-						alignItems={"center"}
-						justifyContent={"flex-start"}>
-						<Text fontWeight={"bold"}>Example </Text>
-						<Box
-							as={"span"}
-							cursor={"pointer"}
-							onClick={() => {
-								if (nameRef.current && emailRef.current) {
-									nameRef.current.value = "Brooke Conroy"
-									emailRef.current.value = "brooke.conroy70@ethereal.email"
-								}
-							}}>
-							📝
-						</Box>
-					</Stack>
-					<Text>Brooke Conroy</Text>
-					<Text>brooke.conroy70@ethereal.email</Text>
-				</Stack>
+				<Text>
+					2. Now complete the following fields
+				</Text>
 			</Stack>
 			<Input
 				ref={nameRef}
@@ -121,6 +96,7 @@ const nextButtonHandler = async (
 			email,
 			code,
 		})
+
 		if (!res.success) {
 			throw new Error("Something went wrong while sending email")
 		}
