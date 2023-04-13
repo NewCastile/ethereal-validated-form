@@ -1,6 +1,6 @@
 <!-- @format -->
 
-## Doctor State in the Multiverse of Context
+## A project for practice
 
 So from my last project called [Gophy](https://github.com/NewCastile/gophy) one thing that i really liked was managing state with useReducer.
 A long time ago i heard that one way to make sure you learned something is to be able to do it four times, so in this little app i made
