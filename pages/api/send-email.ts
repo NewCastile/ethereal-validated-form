@@ -6,13 +6,13 @@ import { EmailRequest, EmailResponseBody } from "../../types/api"
 import nodemailer from "nodemailer"
 
 const transporter = nodemailer.createTransport({
-	name: "ecsample.com",
 	host: "smtp.ethereal.email",
 	port: 587,
 	auth: {
-		user: `devon.rippin92@ethereal.email`,
-		pass: `mE8M5yvAUJrUYTufJ8`,
+		user: `${process.env.SENDER_USER_EMAIL ?? "kay.spinka@ethereal.email"}`,
+		pass: `${process.env.SENDER_USER_PASSWORD ?? "AMGRjgfYynH2h1waSp"}`,
 	},
+	tls: { rejectUnauthorized: false }
 })
 
 export default function handler(
