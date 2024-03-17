@@ -1,94 +1,71 @@
-/** @format */
-// ADD YUP SCHEMA
-import { Select, Stack, Checkbox, Button, StackDivider } from "@chakra-ui/react"
-import { useRef, useState } from "react"
-import { useCodeContext } from "../../../hooks/useCode"
-import { useCompletionContext } from "../../../hooks/useCompletion"
-import { useFormContext } from "../../../hooks/useForm"
-import { useNotificationContext } from "../../../hooks/useNotification"
-import NotificationBox from "../../control/Notification"
+import { Select, Stack, Button, StackDivider, Checkbox } from '@chakra-ui/react';
+import { useState } from 'react';
 
-export default function Second() {
-	const { completionDispatcher } = useCompletionContext()
-	const { codeDispatcher } = useCodeContext()
-	const { notificationDispatcher } = useNotificationContext()
-	const { formState, formDispatcher } = useFormContext()
-	const [termsAccepted, setTermsAccepted] = useState<boolean>(false)
-	const countryRef = useRef<HTMLSelectElement>(null)
-	const cityRef = useRef<HTMLSelectElement>(null)
-	return (
-		<>
-			<NotificationBox />
-			<Select
-				ref={countryRef}
-				defaultValue={
-					formState.country.length ? formState.country : "Venezuela"
-				}>
-				<option value='Venezuela'>Venezuela</option>
-				<option value='Colombia'>Colombia</option>
-				<option value='Argentina'>Argentina</option>
-				<option value='México'>México</option>
-				<option value='España'>España</option>
-			</Select>
-			<Select
-				ref={cityRef}
-				defaultValue={formState.city.length ? formState.city : "City A"}>
-				<option value='City A'>City A</option>
-				<option value='City B'>City B</option>
-				<option value='City C'>City C</option>
-				<option value='City D'>City D</option>
-				<option value='City E'>City E</option>
-			</Select>
-			<Checkbox
-				isChecked={termsAccepted}
-				onChange={() => {
-					setTermsAccepted((old) => !old)
-				}}>
-				Please accept our terms by clicking the checkbox
-			</Checkbox>
-			<Stack
-				direction={"row"}
-				justifyContent={"center"}
-				alignItems={"center"}
-				spacing={"20px"}
-				divider={<StackDivider />}>
-				<Button
-					flexBasis={"25%"}
-					onClick={() => {
-						completionDispatcher({ type: "RESET" })
-						notificationDispatcher({ type: "RESET" })
-						codeDispatcher({ type: "RESET" })
-					}}>
-					Go back
-				</Button>
-				<Button
-					flexBasis={"25%"}
-					onClick={() => {
-						if (countryRef.current && cityRef.current) {
-							try {
-								if (!termsAccepted)
-									throw new Error("You have to accept our terms")
-								formDispatcher({
-									type: "LOAD_THIRD_FORM",
-									payload: {
-										country: countryRef.current.value,
-										city: cityRef.current.value,
-										accepted_terms: termsAccepted ? "ACCEPTED" : "NOT ACCEPTED",
-									},
-								})
-								completionDispatcher({ type: "THIRD_STEP_COMPLETED" })
-								notificationDispatcher({ type: "RESET" })
-							} catch (err: any) {
-								notificationDispatcher({
-									type: "ERROR",
-									payload: { message: decodeURI(err.message) },
-								})
-							}
-						}
-					}}>
-					Next
-				</Button>
-			</Stack>
-		</>
-	)
+import { useFormActions } from '../../../hooks/useFormActions';
+import NotificationBox from '../../Control/Notification';
+
+export default function Third() {
+  const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
+  const [country, setCountry] = useState<string>('Venezuela');
+  const [city, setCity] = useState<string>('City A');
+  const {
+    onThirdStepCompletionHandler: onCompletionHandler,
+    onGoBackThirdFormHandler: onGoBackHandler,
+    onValidationHandler,
+  } = useFormActions();
+
+  return (
+    <>
+      <NotificationBox />
+      <Select value={country} onChange={(e) => setCountry(e.target.value)}>
+        {countryOptions.map((country, countryIdx) => (
+          <option key={countryIdx} value={country}>
+            {country}
+          </option>
+        ))}
+      </Select>
+      <Select value={city} onChange={(e) => setCity(e.target.value)}>
+        {cityOptions.map((city, cityIdx) => (
+          <option key={cityIdx} value={city}>
+            {city}
+          </option>
+        ))}
+      </Select>
+      <Checkbox
+        isChecked={termsAccepted}
+        onChange={() => {
+          setTermsAccepted((old) => !old);
+        }}
+      >
+        Please accept our terms by clicking the checkbox
+      </Checkbox>
+      <Stack
+        alignItems={'center'}
+        direction={'row'}
+        divider={<StackDivider />}
+        justifyContent={'center'}
+        spacing={'20px'}
+      >
+        <Button flexBasis={'25%'} onClick={onGoBackHandler}>
+          Go back
+        </Button>
+        <Button
+          flexBasis={'25%'}
+          onClick={() => {
+            if (country || city) {
+              onCompletionHandler({ city, country, termsAccepted });
+            } else {
+              onValidationHandler('ERROR', 'Select a city or country');
+            }
+          }}
+        >
+          Next
+        </Button>
+      </Stack>
+    </>
+  );
 }
+
+const countryOptions = ['Venezuela', 'Colombia', 'Argentina', 'México', 'España'];
+
+const cityOptions = ['City A', 'City B', 'City C', 'City D', 'City E'];

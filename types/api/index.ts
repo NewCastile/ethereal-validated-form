@@ -1,18 +1,16 @@
-/** @format */
-
-import { NextApiRequest } from "next"
+import { NextApiRequest } from 'next';
 
 export interface EmailRequestBody {
-	username: string
-	email: string
-	code: string
+  username: string;
+  email: string;
+  code: string;
 }
 
 export interface EmailRequest extends NextApiRequest {
-	body: EmailRequestBody
+  body: EmailRequestBody;
 }
 
 export interface EmailResponseBody {
-	message: string
-	success: boolean
+  message: string;
+  success: boolean;
 }

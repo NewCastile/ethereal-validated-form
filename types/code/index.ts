@@ -1,16 +1,14 @@
-/** @format */
-
 export interface CodeContextProps {
-	codeState: CodeState
-	codeDispatcher: React.Dispatch<CodeAction>
+  codeState: CodeState;
+  codeDispatcher: React.Dispatch<CodeAction>;
 }
 
 export interface CodeState {
-	code: string
+  code: string;
 }
 
 export interface SetCodeAction {
-	type: "RESET"
+  type: 'RESET';
 }
 
-export type CodeAction = SetCodeAction
+export type CodeAction = SetCodeAction;
